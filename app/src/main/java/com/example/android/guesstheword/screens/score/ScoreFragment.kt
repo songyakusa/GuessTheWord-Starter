@@ -54,9 +54,7 @@ class ScoreFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(ScoreViewModel::class.java)
 
-        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
+
         viewModel.eventPlayAgain.observe(viewLifecycleOwner, Observer { playAgain ->
             if (playAgain) {
                 findNavController().navigate(ScoreFragmentDirections.actionRestart())
@@ -64,6 +62,7 @@ class ScoreFragment : Fragment() {
             }
         })
         binding.scoreViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
 
         return binding.root
