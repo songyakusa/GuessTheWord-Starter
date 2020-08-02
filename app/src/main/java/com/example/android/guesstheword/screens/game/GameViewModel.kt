@@ -57,11 +57,12 @@ class GameViewModel : ViewModel() {
         Log.i("GameViewModel", "GameViewModel created!")
     }
     private fun nextWord() {
-        if (!wordList.isEmpty()) {
-            //Select and remove a word from the list
+        if (wordList.isEmpty()) {
+            onGameFinish()
+        } else {
+            //Select and remove a _word from the list
             _word.value = wordList.removeAt(0)
         }
-
     }
     /** Methods for buttons presses **/
     fun onSkip() {
@@ -76,4 +77,14 @@ class GameViewModel : ViewModel() {
         super.onCleared()
         Log.i("GameViewModel", "GameViewModel destroyed!")
     }
+
+    private val _eventGameFinish = MutableLiveData<Boolean>()
+    val eventGameFinish: LiveData<Boolean>
+        get() = _eventGameFinish
+
+    fun onGameFinish() {
+        _eventGameFinish.value = true
+    }
+
+
 }
