@@ -80,6 +80,7 @@ class GameFragment : Fragment() {
             if (hasFinished) gameFinished()
         })
 
+        binding.gameViewModel = viewModel
         binding.endGameButton.setOnClickListener { onEndGame() }
         binding.correctButton.setOnClickListener { onCorrect() }
         binding.skipButton.setOnClickListener { onSkip() }
